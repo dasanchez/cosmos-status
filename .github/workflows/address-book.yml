@@ -41,19 +41,20 @@ jobs:
         run: $CHAIN_BINARY version --long
       - name: Generate RS testnet address book
         run: |
-          python -m address_book.address_book -r $RPC_NODE -a $API_NODE -o provider-address-book.csv
+          touch provider
+          rm provider*
+          python -m address_book.address_book -r $RPC_NODE -a $API_NODE -c provider
       - name: Check address book
         run: |
-          ls -la
-          cat provider-address-book.csv
+          head *address-book.csv
       - name: Commit to repo
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add provider-address-book.csv
+          git add -A
           git commit -m "Updated address book"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          branch: ${{ github.ref }}
