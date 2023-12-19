@@ -46,7 +46,7 @@ jobs:
           python -m address_book.address_book -r $RPC_NODE -a $API_NODE -c provider
       - name: Check address book
         run: |
-          head *address-book.csv
+          head output/*address-book.csv
       - name: Commit to repo
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
