@@ -106,7 +106,6 @@ class AddressBookBuilder():
             for chain in self.consumer_chains:
                 fieldnames.append(f'{chain}-cosmosvalcons')
                 fieldnames.append(f'{chain}-address')
-            output.writelines([f'Block {self.block}\n'])
             writer = csv.DictWriter(output, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(val_list)
