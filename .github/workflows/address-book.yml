@@ -41,6 +41,7 @@ jobs:
         run: $CHAIN_BINARY version --long
       - name: Generate RS testnet address book
         run: |
+          touch provider
           rm provider*
           python -m address_book.address_book -r $RPC_NODE -a $API_NODE -c provider
       - name: Check address book
