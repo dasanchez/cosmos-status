@@ -92,7 +92,7 @@ class AddressBookBuilder():
                 csv_entry[f'{chain}-address'] = val[chain]['address']
             val_list.append(csv_entry)
 
-        filename = f'{self.chain_name}-{self.block}-address-book.csv'
+        filename = f'output/{self.chain_name}-{self.block}-address-book.csv'
         with open(filename, 'w', encoding='utf-8') as output:
             fieldnames = [
                 'cosmosvaloper',
@@ -142,7 +142,7 @@ class AddressBookBuilder():
         for chain in self.consumer_chains:
             self.populate_consumer_chain(chain)
 
-        filename = f'{self.chain_name}-{self.block}-address-book.json'
+        filename = f'output/{self.chain_name}-{self.block}-address-book.json'
         with open(filename, 'w') as output:
             json.dump(self.address_book, output, indent=4)
         # 4. Save CSV
