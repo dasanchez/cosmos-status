@@ -41,8 +41,8 @@ jobs:
         run: $CHAIN_BINARY version --long
       - name: Generate RS testnet address book
         run: |
-          rm *address-book.csv
-          python -m address_book.address_book -r $RPC_NODE -a $API_NODE -o provider-address-book.csv
+          rm provider*
+          python -m address_book.address_book -r $RPC_NODE -a $API_NODE -c provider
       - name: Check address book
         run: |
           head *address-book.csv
