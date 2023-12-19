@@ -39,3 +39,10 @@ jobs:
           chmod +x $HOME/go/bin/$CHAIN_BINARY
       - name: Check chain version
         run: $CHAIN_BINARY version --long
+      - name: Generate RS testnet address book
+        run: |
+          python -m address_book.address_book -r $RPC_NODE -a $API_NODE -o provider-address-book.csv
+      - name: Check address book
+        run: |
+          ls -la
+          cat provider-address-book.csv
